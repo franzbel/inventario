@@ -1,0 +1,21 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>NUMERO DE PARTE</th>
+    <th>DESCRIPCION</th>
+    <th>CANTIDAD</th>
+    <th>EXPIRACION</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @total_quantities.each do |total| %>
+      <tr>
+        <td><%= total.product.part_number %></td>
+        <td><%= total.description %></td>
+        <td><%= total.quantity %></td>
+        <td><%= total.expiration_date %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to 'Lista de excistencias', stocks_path %>

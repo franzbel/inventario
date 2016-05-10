@@ -1,0 +1,67 @@
+<style>
+  .row-product:nth-child(even){
+    background:rgba(0,0,56,0.2);
+    color: black;
+    padding-top: 15px;
+    }
+  .row-product:nth-child(odd){
+    padding-top: 15px;
+    background:rgba(0,56,0,0.2);
+  }
+  .head-row{
+    background-color: #428bca;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  #list{
+
+  }
+</style>
+<div id="list">
+  <div class="row head-row">
+    <div class="col-md-2"><strong>NUMERO DE PARTE</strong></div>
+    <div class="col-md-4"><strong>DESCRIPCIÓN</strong></div>
+    <div class="col-md-1"><strong>UNIDAD</strong></div>
+    <div class="col-md-5">
+      <div class="row">
+        <div class="col-md-3"><strong>CANTIDAD</strong></div>
+        <div class="col-md-8"><strong>FECHA DE EXPIRACIÓN</strong></div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+  </div>
+  <%= form_tag incoming_movements_path do %>
+      <% @products.each do |product| %>
+          <div class="row row-product">
+            <div class="col-md-2"><%= product.part_number %></div>
+            <div class="col-md-4"><%= product.description %></div>
+            <div class="col-md-1"><%= product.unit %></div>
+            <div class="col-md-5">
+              <%= fields_for 'quantities[]', IncomingAmount.new do |builder| %>
+                  <% if product.expiration %>
+                      <div class="row">
+                        <div class="col-md-3 form-group"><%= builder.text_field :quantity, class:'form-control' %></div>
+                        <div class="col-md-5 form-group"><%= builder.date_field :expiration_date, value: '', class:'form-control' %></div>
+                        <div class="col-md-1 form-group">
+                          <%= link_to 'Agregar', add_same_product_incoming_movement_path(product), remote: true, class: 'btn btn-primary'%>
+                        </div>
+                        <%= builder.hidden_field :product_id, :value => product.id %>
+                      </div>
+                      <span class="new-field product-<%= product.id %>">
+                        <%= builder.hidden_field :product_id, :value => product.id %>
+                      </span>
+                  <% else %>
+                      <div class="row">
+                        <div class="col-md-3 form-group"><%= builder.text_field :quantity, class:'form-control' %></div>
+                        <%= builder.hidden_field :product_id, :value => product.id %>
+                      </div>
+                  <% end %>
+              <% end %>
+            </div>
+          </div>
+      <% end %>
+      <div class="row">
+        <%= submit_tag 'Confirmar',class:'btn btn-primary' %>
+      </div>
+  <% end %>
+</div>

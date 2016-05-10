@@ -1,0 +1,39 @@
+<%= fields_for 'quantities[]', IncomingAmount.new do |builder| %>
+    <% if product.expiration == true%>
+        <div class="row">
+          <div class="col-md-12">
+            <strong><%= product.description %></strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= builder.label 'Cantidad' %>
+              <%= builder.number_field :quantity, class:'form-control' %>
+              <%= builder.hidden_field :product_id, :value => product.id %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <%= builder.label 'Fecha de expiración' %>
+              <%= builder.date_field :expiration_date, value:'',class:'form-control' %>
+            </div>
+          </div>
+        </div>
+    <% else %>
+        <div class="row">
+          <div class="col-md-12">
+            <strong><%= product.description %></strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <%= builder.label 'Cantidad' %>
+              <%= builder.number_field :quantity, class:'form-control' %>
+              <%= builder.hidden_field :product_id, :value => product.id %>
+            </div>
+          </div>
+        </div>
+    <% end %>
+<% end %>

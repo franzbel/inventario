@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-4">
+      <div><h5><strong>NUMERO DE PARTE</strong></h5><%= @product.part_number %></div>
+      <div><h5><strong>DESCRIPCIÓN</strong></h5><%= @product.description %></div>
+      <div><h5><strong>TIEMPO DE PROCURAMIENTO</strong></h5><%= @product.alert_before %> Dias</div>
+      <div><h5><strong>UNIDAD DE MEDIDA</strong></h5><%= @product.unit %></div>
+      <div><h5><strong>PRODUCTO PERECEDERO</strong></h5><%= @product.get_expiration %></div>
+
+    </div>
+    <div class="col-md-4">
+      <div><h5><strong>CANTIDAD MAXIMA</strong></h5><%= @product.maximum %></div>
+      <div><h5><strong>CANTIDAD OPTIMA</strong></h5><%= @product.optimum %></div>
+      <div><h5><strong>CANTIDAD MINIMA</strong></h5><%= @product.minimum %></div>
+      <div><h5><strong>ESPECIFICACION</strong></h5><%= @product.specification %></div>
+    </div>
+    <div class="col-md-4">
+      <div><h5><strong>IMAGEN</strong></h5><%= image_tag @product.photo.url(:medium) %></div>
+    </div>
+
+</div>
+<%= link_to 'Lista de productos', products_path %> <br>
+<%= link_to 'Editar', edit_product_path(@product) %>
+

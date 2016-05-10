@@ -1,0 +1,69 @@
+<h3>NUEVO PRODUCTO</h3>
+  <%= form_for @product do |f| %>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label 'Numero de parte' %>
+          <%= f.text_field :part_number, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label 'Descripcion' %>
+          <%= f.text_field :description, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label 'Tiempo de procuramiento' %>
+          <%= f.number_field :alert_before, value: '', class:'form-control', placeholder:'Elegir una cantidad' %>
+        </div>
+        <div class="form-group">
+          <%= f.label 'Unidad de medida' %>
+          <%= f.collection_select(:unit, @units,:unit, :unit ,{:prompt=>'Seleccione una unidad'},{class:'form-control'} )%>
+        </div>
+        <div class="form-group">
+          <%= f.label 'Producto perecedero' %>
+          <%= f.select(:expiration, options_for_select([['Expira','true'],['No expira','false']]),{:prompt=>'Seleccione una opcion'},{class:'form-control'}) %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label 'Cantidad maxima' %>
+          <%= f.number_field :maximum, value: '',class:'form-control', placeholder:'Elegir una cantidad' %>
+        </div>
+        <div class="form-group">
+          <%= f.label 'Cantidad otima' %>
+          <%= f.number_field :optimum, value: '', class:'form-control', placeholder:'Elegir una cantidad'  %>
+        </div>
+        <div class="form-group">
+          <%= f.label 'Cantidad minima' %>
+          <%= f.number_field :minimum, value: '', class:'form-control', placeholder:'Elegir una cantidad'  %>
+        </div>
+        <div class="form-group">
+          <%= f.label :specification %>
+          <%= f.text_area :specification, class: 'form-control', rows: '4' %>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :select_picture %>
+          <%= f.file_field :photo, class:'file', id:'photo', :data =>  {:show_upload=>false} %>
+        </div>
+      </div>
+    </div>
+    <%= f.submit 'Agregar', class:'btn btn-primary' %>
+  <% end %>
+  <%= link_to 'Lista de productos', products_path %>
+<script>
+    $(document).ready(function(){
+        $("#photo").fileinput({
+            previewFileType: "image",
+            browseClass: "btn btn-success",
+            browseLabel: "Pick Image",
+            browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+            removeClass: "btn btn-danger",
+            removeLabel: "Delete",
+            removeIcon: "<i class=\"glyphicon glyphicon-trash\"></i> ",
+            uploadClass: "btn btn-info",
+            uploadLabel: "Upload",
+            uploadIcon: "<i class=\"glyphicon glyphicon-upload\"></i> "
+        });
+    });
+</script>

@@ -1,0 +1,40 @@
+<style>
+  .fa-exclamation-circle{
+    color: red;
+  }
+</style>
+<h3>EXCISTENCIAS</h3>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>ALERTA</th>
+    <th>NUMERO DE PARTE</th>
+    <th>DESCRIPCIÓN</th>
+    <th>CANTIDAD ACTUAL</th>
+    <th>MAXIMO</th>
+    <th>OPTIMO</th>
+    <th>MINIMO</th>
+    <th>CADUCIDAD</th>
+    <th>ACCIÓN</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @products.each do |product| %>
+      <tr>
+        <% if product.alert? %>
+            <td><i class="fa fa-exclamation-circle" aria-hidden="true"></i></td>
+        <% else  %>
+            <td><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></td>
+        <% end  %>
+        <td><%= product.part_number %></td>
+        <td><%= product.description %></td>
+        <td><%= product.total_quantity %></td>
+        <td><%= product.get_maximum %></td>
+        <td><%= product.get_optimum %></td>
+        <td><%= product.get_minimum %></td>
+        <td><%= product.get_expiration %></td>
+        <td><%= link_to 'Mostrar', stock_path(product) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

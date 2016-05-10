@@ -1,0 +1,41 @@
+<style>
+  .in-mov-container{
+      padding-left: 20px;
+      margin-bottom: 15px;
+  }
+</style>
+<div class="in-mov-container">
+  <div class="row">
+    <h4><strong>DETALLES DEL MOVIMIENTO</strong></h4>
+  </div>
+  <div class="row">
+    <h5><strong>TIPO DE DOCUMENTO</strong></h5>
+    <%= @incoming_movement.movement_type %>
+    <H5><strong>PROVEEDOR</strong></H5>
+    <%= @incoming_movement.supplier %>
+    <H5><strong>FECHA</strong></H5>
+    <%= @incoming_movement.created_at %>
+  </div>
+</div>
+<hr>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>CANTIDAD</th>
+    <th>NUMERO DE PARTE</th>
+    <th>DESCRIPCION</th>
+    <th>UNIDAD</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @incoming_movement.incoming_amounts.each do |incoming| %>
+      <tr>
+        <td><%= incoming.quantity %></td>
+        <td><%= incoming.get_part_number %></td>
+        <td><%= incoming.get_description %></td>
+        <td><%= incoming.get_unit %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to 'Lista de entradas', incoming_movements_path %>

@@ -1,0 +1,22 @@
+<h3>DOCUMENTOS DE ENTRADA</h3>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>DOCUMENTO</th>
+    <th>FECHA</th>
+    <th>TIPO DE MOVIMIENTO</th>
+    <th>ACCION</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @incoming_movements.each do |incoming_movement| %>
+      <tr>
+        <td><%= incoming_movement.folio %></td>
+        <td><%= incoming_movement.created_at %></td>
+        <td><%= incoming_movement.movement_type %></td>
+        <td><%= link_to 'Mostrar', incoming_movement_path(incoming_movement) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to 'Nueva entrada', new_incoming_movement_path %>

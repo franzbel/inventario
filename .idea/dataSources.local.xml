@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="development" uuid="ae897381-54f5-41a7-820f-131fa0bc7889">
+      <auth-required>false</auth-required>
+    </data-source>
+    <data-source name="Rails inventario: test" uuid="360229fb-a27f-4afa-9432-9289b2ac8703">
+      <auth-required>false</auth-required>
+    </data-source>
+    <data-source name="Rails inventario: development" uuid="484bf5a3-7533-4e22-833d-8602d3bb909c">
+      <auth-required>false</auth-required>
+    </data-source>
+  </component>
+</project>

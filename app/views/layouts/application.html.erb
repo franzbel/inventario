@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inventario</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">FAB</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li></li>
+          <li></li>
+          <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>  Franz Beltran</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="panel-group" id="accordion">
+          <div role="tabpanel">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseZero"><span class="glyphicon glyphicon-folder-close"></span>Catalogos auxilares</a>
+                </h4>
+              </div>
+              <div id="collapseZero" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <table class="table">
+                    <tr>
+                      <td>
+                        <i class="fa fa-book" aria-hidden="true"></i><%= link_to '  Unidades', units_path %>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close"></span>Catalogo</a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <table class="table">
+                    <tr>
+                      <td>
+                        <i class="fa fa-book" aria-hidden="true"></i><%= link_to '  Productos', products_path %>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-th"></span>Inventarios</a>
+                </h4>
+              </div>
+              <div id="collapseTwo" class="panel-collapse collapse in">
+                <div class="panel-body">
+                  <table class="table">
+                    <tr>
+                      <td>
+                        <span class="glyphicon glyphicon-pencil text-primary"></span><%= link_to 'Inventario inicial', first_movement_incoming_movements_path %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="glyphicon glyphicon-pencil text-primary"></span><%= link_to 'Entradas', incoming_movements_path %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="glyphicon glyphicon-pencil text-primary"></span><%= link_to 'Salidas', outgoing_movements_path %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="glyphicon glyphicon-pencil text-primary"></span><%= link_to 'Excistencias', stocks_path %>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <% flash.each do |key, value| %>
+          <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+

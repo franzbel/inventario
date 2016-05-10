@@ -1,0 +1,40 @@
+<style>
+    .in-mov-container{
+        padding-left: 20px;
+        margin-bottom: 15px;
+    }
+</style>
+<div class="in-mov-container">
+  <div class="row">
+    <h4><strong>DETALLES DEL MOVIMIENTO</strong></h4>
+  </div>
+  <div class="row">
+    <h5><strong>TIPO DE DOCUMENTO</strong></h5>
+    <%= @outgoing_movement.movement_type %>
+    <H5><strong>DESTINATARIO</strong></H5>
+    <%= @outgoing_movement.receiver %>
+    <H5><strong>FECHA</strong></H5>
+    <%= @outgoing_movement.created_at %>
+  </div>
+</div>
+<hr>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>CANTIDAD</th>
+    <th>NUMERO DE PARTE</th>
+    <th>DESCRIPCION</th>
+    <th>UNIDAD</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @outgoing_movement.outgoing_amounts.each do |outgoing| %>
+      <tr>
+        <td><%= outgoing.quantity %></td>
+        <td><%= outgoing.get_part_number %></td>
+        <td><%= outgoing.get_description %></td>
+        <td><%= outgoing.get_unit %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
